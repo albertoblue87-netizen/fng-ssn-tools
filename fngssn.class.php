@@ -277,6 +277,21 @@ class fngssn{
         return sprintf("%03s",$area) . $separator . sprintf("%02s",$group) . $separator . $lastfour;
     }
     
+    // Generate a list of SSNs based on state
+    // Returns an array of SSNs, or false if bad state
+    function generateMultipleSSNs($count = 1, $state = false, $separator = '-'){
+        $count = (int)$count;
+        if($count < 1){
+            return false;
+        }
+
+        $ssns = array();
+        for($i = 0; $i < $count; $i++){
+            $ssns[] = $this->generateSSN($state, $separator);
+        }
+        return $ssns;
+    }
+
     // See if a SSN is valid
     // Returns false is not, or two letter state abbreviation if it is valid
     function validateSSN($ssn){
