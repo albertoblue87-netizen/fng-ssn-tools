@@ -1,6 +1,0 @@
-{
-  "previewPort": 3000,
-  "healthPath": "/example.php",
-  "startCommand": "docker compose -f docker-compose.base44.yml up -d",
-  "secrets": []
-}
