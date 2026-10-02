@@ -1,0 +1,16 @@
+services:
+  web:
+    image: php:8.2-cli
+    working_dir: /var/www/html
+    volumes:
+      - ./:/var/www/html
+    ports:
+      - "3000:3000"
+    command: ["php", "-S", "0.0.0.0:3000", "-t", "/var/www/html"]
+    restart: on-failure
+    healthcheck:
+      test: ["CMD", "php", "-r", "file_get_contents('http://localhost:3000/example.php') !== false ? exit(0) : exit(1);"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 5s
